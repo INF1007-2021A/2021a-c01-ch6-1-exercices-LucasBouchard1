@@ -22,8 +22,9 @@ def contains_doubles(items: list) -> bool:
         for y in items:
             if y==x:
                 i+=1
-        if i>=2:
-            return True
+                if i>=2:
+                    return True
+        i=0
     return False
 
 
@@ -49,15 +50,13 @@ def frequence(sentence: str) -> dict:
             lettres[lettre]+=1
         except:
             pass
-    final = {}
-    for lettre, repetition in lettres.items():
-        if repetition>5:
-            final[lettre] = repetition
+    final = {lettre: repetition for lettre, repetition in lettres.items() if repetition>5}
     return {x: y for x, y in sorted(final.items(), key=lambda item: item[1])}
 
 class recettes:
     def __init__(self):
         self.recettes = {}
+        
     def get_recipes(self):
         recette = str(input("recette: "))
         ingredients, ingredient = [], str(input("ingredient: "))
