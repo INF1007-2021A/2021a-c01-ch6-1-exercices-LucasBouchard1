@@ -4,52 +4,81 @@
 
 def order(values: list = None) -> list:
     if values is None:
-        # TODO: demander les valeurs ici
-        pass
-
-    return []
+        values = [int(input(":")) for x in range(10)]
+    return sorted(values)
 
 
 def anagrams(words: list = None) -> bool:
     if words is None:
-        # TODO: demander les mots ici
-        pass
-
+        words = [str(input(":")) for x in range(2)]
+    if sorted(words[0].split())==sorted(words[1].split()):
+        return True
     return False
 
 
 def contains_doubles(items: list) -> bool:
+    i = 0
+    for x in items:
+        for y in items:
+            if y==x:
+                i+=1
+        if i>=2:
+            return True
     return False
 
 
 def best_grades(student_grades: dict) -> dict:
-    # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
-    return {}
+    moyenne = lambda liste : sum(liste)/len(liste)
+    nom = None
+    moy = 0
+    for noms, notes in student_grades.items():
+        info = moyenne(notes)
+        if info > moy:
+            nom = noms
+            moy = info
+    return {nom: moy}
 
 
 def frequence(sentence: str) -> dict:
+    sentence = sentence.lower()
     # TODO: Afficher les lettres les plus fréquentes
     #       Retourner le tableau de lettres
+    lettres = {chr(97+x):0 for x in range(26)}
+    for lettre in sentence:
+        try:
+            lettres[lettre]+=1
+        except:
+            pass
+    final = {}
+    for lettre, repetition in lettres.items():
+        if repetition>5:
+            final[lettre] = repetition
+    return {x: y for x, y in sorted(final.items(), key=lambda item: item[1])}
 
-    return {}
+class recettes:
+    def __init__(self):
+        self.recettes = {}
+    def get_recipes(self):
+        recette = str(input("recette: "))
+        ingredients, ingredient = [], str(input("ingredient: "))
+        while ingredient != "":
+            ingredients.append(ingredient)
+            ingredient = str(input("ingredient: "))
+        self.recettes[recette] = ingredients
 
-
-def get_recipes():
-    # TODO: Demander le nom d'une recette, puis ses ingredients et enregistrer dans une structure de données
-    pass
-
-
-def print_recipe(ingredients) -> None:
-    # TODO: Demander le nom d'une recette, puis l'afficher si elle existe
-    pass
+    def print_recipe(self, ingredients) -> None:
+        for x,y in self.recettes.items():
+            if sorted(y) == sorted(ingredients):
+                return x
+        return None
 
 
 def main() -> None:
     print(f"On essaie d'ordonner les valeurs...")
-    order()
+    # print(order())
 
     print(f"On vérifie les anagrammes...")
-    anagrams()
+    # print(anagrams())
 
     my_list = [3, 3, 5, 6, 1, 1]
     print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
@@ -59,13 +88,15 @@ def main() -> None:
     print(f"{list(best_student.keys())[0]} a la meilleure moyenne: {list(best_student.values())[0]}")
 
     sentence = "bonjour, je suis une phrase. je suis compose de beaucoup de lettre. oui oui"
-    frequence(sentence)
+    print(frequence(sentence))
 
+    RECIPIES = recettes()
+    recipes = ["eau", "jus", "pomme"]
     print("On enregistre les recettes...")
-    recipes = get_recipes()
+    RECIPIES.get_recipes()
 
     print("On affiche une recette au choix...")
-    print_recipe(recipes)
+    print(RECIPIES.print_recipe(recipes))
 
 
 if __name__ == '__main__':
