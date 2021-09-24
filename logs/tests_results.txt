@@ -1,0 +1,75 @@
+test_anagram (__main__.TestExercice) ... FAIL
+test_doubles (__main__.TestExercice) ... FAIL
+test_frequence (__main__.TestExercice) ... FAIL
+test_grades (__main__.TestExercice) ... ok
+test_order (__main__.TestExercice) ... ok
+
+======================================================================
+FAIL: test_anagram (__main__.TestExercice)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_exercice.py", line 37, in test_anagram
+    self.assertEqual(
+AssertionError: Lists differ: [False, False] != [True, False]
+
+First differing element 0:
+False
+True
+
+- [False, False]
++ [True, False] : Erreur dans la vérification de l'anagramme
+
+======================================================================
+FAIL: test_doubles (__main__.TestExercice)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_exercice.py", line 52, in test_doubles
+    self.assertListEqual(
+AssertionError: Lists differ: [True, True] != [False, True]
+
+First differing element 0:
+True
+False
+
+- [True, True]
++ [False, True] : Erreur dans les doublons
+
+======================================================================
+FAIL: test_frequence (__main__.TestExercice)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_exercice.py", line 80, in test_frequence
+    self.assertListEqual(
+AssertionError: Lists differ: [{}, {'a': 6, 'e': 7}] != [{'B': 1, 'o': 4, 'n': 2, 'j': 2, 'u': 2, '[188 chars]: 1}]
+
+First differing element 0:
+{}
+{'B': 1, 'o': 4, 'n': 2, 'j': 2, 'u': 2, 'r': 2, ',': 1, ' ': 1, 'b': 1}
+
+- [{}, {'a': 6, 'e': 7}]
++ [{' ': 1, ',': 1, 'B': 1, 'b': 1, 'j': 2, 'n': 2, 'o': 4, 'r': 2, 'u': 2},
++  {' ': 5,
++   "'": 1,
++   '/': 1,
++   'J': 1,
++   'a': 6,
++   'b': 1,
++   'c': 3,
++   'd': 1,
++   'e': 7,
++   'f': 1,
++   'g': 2,
++   'i': 5,
++   'l': 3,
++   'm': 2,
++   'n': 4,
++   'o': 4,
++   'q': 1,
++   'r': 3,
++   't': 2,
++   'u': 2}] : Erreur dans les histogrammes
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (failures=3)
